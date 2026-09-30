@@ -1,0 +1,70 @@
+{
+  "main": [
+    { "name": "Home", "url": "/" },
+    { "name": "About", "url": "/about" },
+    { "name": "Classes", "url": "/classes" },
+    { "name": "Events", "url": "/events" },
+    { "name": "Blog", "url": "/blog" }
+  ],
+  "mega": {
+    "label": "Pages",
+    "columns": [
+      {
+        "title": "Studio",
+        "links": [
+          { "name": "About", "url": "/about" },
+          { "name": "Trainers", "url": "/trainers" },
+          { "name": "Your First Time", "url": "/your-first-time" },
+          { "name": "Contact", "url": "/contact" }
+        ]
+      },
+      {
+        "title": "Practice",
+        "links": [
+          { "name": "Classes", "url": "/classes" },
+          { "name": "Class Schedule", "url": "/class-schedule" },
+          { "name": "Class Single", "url": "/classes/slow-flow-restore" }
+        ]
+      },
+      {
+        "title": "Community",
+        "links": [
+          { "name": "Events", "url": "/events" },
+          { "name": "Event Details", "url": "/events/late-summer-yoga-retreat" },
+          { "name": "Blog", "url": "/blog" },
+          { "name": "Blog Details", "url": "/blog-posts/breathwork-for-beginners-three-techniques-to-start" }
+        ]
+      }
+    ]
+  },
+  "cta": { "name": "Book a Call", "url": "/contact" },
+  "footer": [
+    {
+      "title": "Main Pages",
+      "links": [
+        { "name": "Home", "url": "/" },
+        { "name": "About", "url": "/about" },
+        { "name": "Classes", "url": "/classes" },
+        { "name": "Events", "url": "/events" },
+        { "name": "Blog", "url": "/blog" }
+      ]
+    },
+    {
+      "title": "Other Pages",
+      "links": [
+        { "name": "Contact", "url": "/contact" },
+        { "name": "Trainers", "url": "/trainers" },
+        { "name": "Pricing", "url": "/pricing" },
+        { "name": "Class Schedule", "url": "/class-schedule" },
+        { "name": "Your First Time", "url": "/your-first-time" }
+      ]
+    },
+    {
+      "title": "Utility Pages",
+      "links": [
+        { "name": "Style Guide", "url": "/style-guide" },
+        { "name": "Not Found", "url": "/404" }
+      ]
+    }
+  ]
+}

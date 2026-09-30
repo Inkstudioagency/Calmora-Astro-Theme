@@ -1,0 +1,54 @@
+---
+import LinkButton from '../../LinkButton.astro';
+import { getClasses } from '../../../lib/content';
+
+const classes = (await getClasses()).filter((entry) => entry.data.beginnerFriendly);
+---
+
+<section class="section_start-classes">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="start-classes-wrapper">
+        <div class="section-header-block is-split">
+          <div class="section-header-text-block is-tight">
+            <div class="section-subtitle-block text-size-xsmall text-weight-medium text-color-brand">Classes</div>
+            <h2 section-title="" class="section-header-title heading-style-2 text-color-heading">Best Classes <em class="section-title-italic">To Start With</em></h2>
+          </div>
+          <a data-wf--primary-button--variant="v1" href="/classes" class="btn btn-sm btn-brand">View all classes</a>
+        </div>
+        <div class="start-classes-content-block">
+          <div layer-view-2="" class="start-classes-media-block"><img src="/images/your-first-time__start-classes-media.webp" alt="A student practising outdoors at sunset" loading="lazy" class="start-classes-media"></div>
+          <div class="schedule-table-block">
+            <div layer-view-3="" class="schedule-table-head is-three-up">
+              <div class="schedule-table-label">Class</div>
+              <div class="schedule-table-label">Time</div>
+              <div class="schedule-table-label">Days</div>
+            </div>
+            <div layer-view-4="" class="schedule-table-body">
+              <div class="cms-passthrough w-dyn-list">
+                <div role="list" class="cms-passthrough shedule w-dyn-items">
+                  {classes.map((entry) => (
+                    <div role="listitem" class="cms-passthrough w-dyn-item">
+                      <div class="schedule-table-row is-three-up">
+                        <div class="schedule-table-class-block">
+                          <h3 class="schedule-table-class-name">{entry.data.title}</h3>
+                          <LinkButton href="/contact" label="Book Class" />
+                        </div>
+                        <div class="schedule-table-cell">
+                          <div class="schedule-table-value">{entry.data.primaryTime}</div>
+                        </div>
+                        <div class="schedule-table-cell">
+                          <div class="schedule-table-value">{entry.data.primaryDay}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

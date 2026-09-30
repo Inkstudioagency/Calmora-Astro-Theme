@@ -1,0 +1,32 @@
+---
+import config from '../../config/config.json';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/sections/class-single/PageHeader.astro';
+import Prose from '../../components/sections/class-single/Prose.astro';
+import BlogSlider from '../../components/sections/shared/BlogSlider.astro';
+import Faq from '../../components/sections/shared/Faq.astro';
+import { getClasses, type ClassEntry } from '../../lib/content';
+
+export async function getStaticPaths() {
+  return (await getClasses()).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+interface Props {
+  entry: ClassEntry;
+}
+
+const { entry } = Astro.props;
+---
+
+<BaseLayout
+  title={`${entry.data.title} | ${config.site.title}`}
+  description={entry.data.shortDescription}
+  image={entry.data.heroImage || undefined}
+  pageId="6aae6fe397fb335d35a4b241"
+  navVariant="light"
+>
+  <PageHeader entry={entry} />
+  <Prose entry={entry} />
+  <BlogSlider />
+  <Faq />
+</BaseLayout>

@@ -1,0 +1,33 @@
+---
+import EventRow from '../../cards/EventRow.astro';
+import { getEvents, isUpcoming } from '../../../lib/content';
+
+interface Props {
+  /** Slug of the event being viewed, left out of the list. */
+  exclude?: string;
+}
+
+const { exclude } = Astro.props;
+const events = (await getEvents()).filter((event) => isUpcoming(event) && event.id !== exclude);
+---
+
+<section class="section_events-list white-bg">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="events-list-wrapper">
+        <div class="section-header-block">
+          <h2 section-title="" class="section-header-title heading-style-2 text-color-heading">Upcoming Events &amp; <em class="section-title-italic">Retreats</em></h2>
+        </div>
+        <div class="w-dyn-list">
+          <div role="list" class="events-list-block w-dyn-items">
+            {events.map((event) => (
+              <div role="listitem" class="w-dyn-item">
+                <EventRow event={event} heading="h3" tinted reveal="layer-view-2" titleLinkClass="event-title-block" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

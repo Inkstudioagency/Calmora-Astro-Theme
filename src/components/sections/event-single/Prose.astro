@@ -1,0 +1,66 @@
+---
+import { render } from 'astro:content';
+import type { EventEntry } from '../../../lib/content';
+import { numbered } from '../../../lib/utils';
+
+interface Props {
+  entry: EventEntry;
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+const bringIcons = ['/images/yoga-mat-1.svg', '/images/milk-bottle.svg', '/images/clothes.svg'];
+const bringItems = numbered(data, 'bringItem', 3);
+---
+
+<section class="section_prose">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="prose-wrapper is-narrow">
+        <div layer-view-1="" class="prose-block">
+          <h2 class="prose-title">{data.aboutHeading}</h2>
+          <div class="prose-text w-richtext"><Content /></div>
+        </div>
+        <div layer-view-1="" class="prose-block">
+          <h3 class="prose-title">What&#x27;s Included</h3>
+          <div class="prose-rich-list w-richtext">
+            <ul>
+              {data.includedList.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        </div>
+        <div class="prose-figure-wrapper is-split">
+          <div class="prose-figure-block is-half"><img src={data.bodyImage1} loading="lazy" alt="" class="prose-figure" /></div>
+          <div class="prose-figure-block is-half"><img src={data.bodyImage2} loading="lazy" alt="" class="prose-figure" /></div>
+        </div>
+        <div layer-view-1="" class="prose-block">
+          <h3 class="prose-title">What You&#x27;ll Experience</h3>
+          <p class="prose-text">{data.experienceBody}</p>
+        </div>
+        <div layer-view-1="" class="prose-block">
+          <h3 class="prose-title">What To Bring</h3>
+          <div class="prose-feature-list-block">
+            {bringItems.map((item, index) => (
+              <div class="prose-feature-card-block is-compact">
+                <div class="prose-feature-card-inner-block"><img src={bringIcons[index]} loading="lazy" alt="prose-feature-icon" class="prose-feature-icon is-compact" />
+                  <div class="prose-feature-text-block">
+                    <div class="card-title is-small">{item}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div layer-view-1="" class="prose-block">
+          <h3 class="prose-title">{data.whyJoinHeading}</h3>
+          <p class="prose-text">{data.whyJoinBody}</p>
+        </div>
+        <div layer-view-1="" class="prose-block">
+          <h3 class="prose-title">Reserve Your Spot</h3>
+          <p class="prose-text">{data.reserveBody}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

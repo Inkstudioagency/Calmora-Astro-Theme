@@ -1,0 +1,34 @@
+---
+import LinkButton from '../LinkButton.astro';
+import { classUrl, type ClassEntry } from '../../lib/content';
+
+interface Props {
+  entry: ClassEntry;
+}
+
+const { entry } = Astro.props;
+const { title, shortDescription, cardImage, metaLabel, teacherName, teacherAvatar } = entry.data;
+const href = classUrl(entry);
+---
+
+<div layer-view-2="" class="class-item-card-block is-ruled">
+  <a href={href} class="class-card-image-block w-inline-block"><img src={cardImage} loading="lazy" alt={title} class="class-card-image" /></a>
+  <div class="class-card-block">
+    <div class="class-card-meta-block">
+      <div class="class-card-tag"><img src="/images/benefit-icon.svg" loading="lazy" alt="About Icon" class="class-card-tag-icon" />
+        <div class="text-block">{metaLabel}</div>
+      </div>
+      <div class="class-card-author">
+        <div class="class-card-avatar-block"><img src={teacherAvatar} loading="lazy" alt={teacherName} class="class-card-avatar" /></div>
+        <div class="class-tutor-name">{teacherName}</div>
+      </div>
+    </div>
+    <div class="class-card-text-block">
+      <a href={href} class="class-card-title-block w-inline-block">
+        <h3 class="class-card-title">{title}</h3>
+      </a>
+      <p class="class-card-text">{shortDescription}</p>
+    </div>
+    <LinkButton href={href} label="View Class" />
+  </div>
+</div>

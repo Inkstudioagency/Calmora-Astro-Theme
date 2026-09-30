@@ -1,0 +1,33 @@
+---
+import config from '../../config/config.json';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EventHero from '../../components/sections/event-single/EventHero.astro';
+import Prose from '../../components/sections/event-single/Prose.astro';
+import EventsList from '../../components/sections/event-single/EventsList.astro';
+import Gallery from '../../components/sections/shared/Gallery.astro';
+import Faq from '../../components/sections/shared/Faq.astro';
+import { getEvents, type EventEntry } from '../../lib/content';
+
+export async function getStaticPaths() {
+  return (await getEvents()).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+interface Props {
+  entry: EventEntry;
+}
+
+const { entry } = Astro.props;
+---
+
+<BaseLayout
+  title={`${entry.data.title} | ${config.site.title}`}
+  description={entry.data.shortDescription}
+  image={entry.data.bannerImage || undefined}
+  pageId="6aae6fe397fb335d35a4b242"
+>
+  <EventHero entry={entry} />
+  <Prose entry={entry} />
+  <EventsList exclude={entry.id} />
+  <Gallery />
+  <Faq />
+</BaseLayout>

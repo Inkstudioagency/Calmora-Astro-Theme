@@ -1,0 +1,74 @@
+---
+import config from '../config/config.json';
+import menu from '../config/menu.json';
+import { isCurrent, currentAttrs } from '../lib/utils';
+
+interface Props {
+  pageId: string;
+}
+
+const { pageId } = Astro.props;
+const { pathname } = Astro.url;
+const { footer, social } = config;
+const current = (href: string) => isCurrent(href, pathname) && 'w--current';
+---
+
+<section class="section_footer">
+  <div class="section-gap footer-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="footer-wrapper">
+        <div class="footer-content-block">
+          <div class="footer-top-block">
+            <div class="footer-brand-block">
+              <div class="footer-info-block">
+                <a href="/" {...currentAttrs('/', pathname)} class:list={['footer-logo-block', 'w-inline-block', current('/')]}><img src={footer.logo_mark} alt="" loading="lazy" class="footer-logo-mark" />
+                  <div class="footer-logo-text">{footer.logo_text}</div>
+                </a>
+                <p class="footer-info-text">{footer.description}</p>
+              </div>
+              <div class="footer-social-block">
+                {social.map((item) => (
+                  <a href={item.url} target={item.new_tab ? '_blank' : undefined} class="footer-social-link w-inline-block"><img src={item.icon} alt={item.name} loading="lazy" class="footer-social-icon" /></a>
+                ))}
+              </div>
+            </div>
+            <div class="footer-newsletter-card-block">
+              <div class="footer-newsletter-block">
+                <div class="footer-newsletter-title">{footer.newsletter_title}</div>
+                <div class="footer-subscribe-form w-form">
+                  <form id="email-form" name="email-form" data-name="Email Form" method="get" class="footer-subscribe-block" data-wf-page-id={pageId} data-wf-element-id="634b26b9-1613-78c6-f3c2-a1a2fb5e8f33"><input class="footer-subscribe-field w-input" maxlength="256" name="email" data-name="Email" aria-label="footer-subscribe-field" placeholder={footer.newsletter_placeholder} type="email" id="email" required /><input type="submit" data-wait="Subscribing..." class="footer-subscribe-button w-button" value={footer.newsletter_button} /></form>
+                  <div class="footer-subscribe-note w-form-done">
+                    <div>{footer.newsletter_success}</div>
+                  </div>
+                  <div class="footer-subscribe-note is-error w-form-fail">
+                    <div>{footer.newsletter_error}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-mid-block">
+            <div class="footer-brandmark-block"><img src="/images/Footer-Huge-Title.svg" loading="lazy" alt="Footer Huge Title" class="footer-brandmark" /></div>
+            <div id="w-node-_0cabf0c2-f721-56c7-21a0-6846b8441139-b8441114" class="footer-links-block">
+              {menu.footer.map((column, index) => (
+                <div class:list={['footer-link-block', index === 1 && 'is-auto']}>
+                  <p class="footer-link-title">{column.title}</p>
+                  <div class="footer-link-list-block">
+                    {column.links.map((link) => (
+                      <a href={link.url} {...currentAttrs(link.url, pathname)} class:list={['footer-link', current(link.url)]}>{link.name}</a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom-block">
+          <p class="footer-copyright">{footer.copyright}</p>
+          <p class="footer-credit">Designed by <a href="https://inks.studio/" target="_blank" class="footer-credit-link">Ink Studio</a> - Powered by <a href="https://astro.build/" target="_blank" class="footer-credit-link">Astro</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

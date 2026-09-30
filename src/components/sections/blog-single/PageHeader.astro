@@ -1,0 +1,32 @@
+---
+import type { BlogPostEntry } from '../../../lib/content';
+
+interface Props {
+  entry: BlogPostEntry;
+}
+
+const { title, bannerImage } = Astro.props.entry.data;
+---
+
+<section class="section_page-header">
+  <div class="section-gap is-page-top">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="page-header-wrapper">
+        <div class="page-header-top-block is-stacked">
+          <div load-anim-1="" class="blog-back-button-block">
+            <a href="/blog" class="page-header-back-link w-inline-block">
+              <div class="button-arrow-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5.5 11.998L19 11.998" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M10.9999 5.998C10.9999 5.998 5.00001 10.417 5 11.9981C4.99999 13.5792 11 17.998 11 17.998" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </div>
+              <div>Back to Blog</div>
+            </a>
+          </div>
+          <h1 hero-title="" class="page-header-title">{title}</h1>
+        </div>
+        <div load-anim-2="" class="page-header-media-block"><img src={bannerImage} loading="lazy" alt={title} class="page-header-media" /></div>
+      </div>
+    </div>
+  </div>
+</section>

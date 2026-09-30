@@ -1,0 +1,59 @@
+---
+import ClassCard from '../../cards/ClassCard.astro';
+import { getClasses } from '../../../lib/content';
+
+const classes = await getClasses();
+---
+
+<section class="section_all-classes">
+  <div class="section-gap bottom-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="all-classes-wrapper">
+        <div class="all-classes-header-block">
+          <div class="section-header-block is-flush">
+            <h2 section-title="" class="section-header-title heading-style-2 text-color-heading">All <em class="section-title-italic">Classes</em></h2>
+            <p layer-view-2="" class="section-header-description">Our classes are not about perfect poses. They are about presence, breath, and building a practice that meets you exactly where you are.</p>
+          </div>
+          <div layer-view-3="" class="filter-row-block">
+            <div class="filter-form-block w-form">
+              <form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get" class="filter-form-inner" data-wf-page-id="6aae6fe397fb335d35a4b239" data-wf-element-id="ad5efa47-e901-abc4-2718-d40ffefe9f52">
+                <div class="filter-item-wrap"><select id="Classes-Type" name="field" data-name="Field" aria-label="filter-form" class="filter-item-block w-node-_1eee33cf-5082-3e25-92c4-d399c57d8b20-35a4b239 w-select">
+                    <option value="">Type of classes</option>
+                    <option value="First">Yoga</option>
+                    <option value="Second">Meditation</option>
+                    <option value="Third">Breathwork</option>
+                    <option value="Another option">Pilates</option>
+                    <option value="Another option">Mobility</option>
+                    <option value="Another option">Restorative</option>
+                  </select><select id="Level" name="field" data-name="Field" aria-label="filter-form" class="filter-item-block is-2 w-node-b4af4a4c-82df-0fce-df6e-6cc3b4d36502-35a4b239 w-select">
+                    <option value="">Level</option>
+                    <option value="First">Beginner</option>
+                    <option value="Second">Intermediate</option>
+                    <option value="Third">Advanced</option>
+                    <option value="Another option">Expert</option>
+                  </select></div>
+              </form>
+              <div class="w-form-done">
+                <div>Thank you! Your submission has been received!</div>
+              </div>
+              <div class="w-form-fail">
+                <div>Oops! Something went wrong while submitting the form.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="all-classes-content-block">
+          <div class="w-dyn-list">
+            <div role="list" class="class-list-block is-ruled-grid w-dyn-items">
+              {classes.map((entry) => (
+                <div role="listitem" class="classes-collection-item w-dyn-item">
+                  <ClassCard entry={entry} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

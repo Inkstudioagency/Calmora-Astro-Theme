@@ -1,0 +1,66 @@
+---
+import { getEvents, isUpcoming, eventUrl } from '../../../lib/content';
+import { formatDate } from '../../../lib/utils';
+
+const events = (await getEvents()).filter(isUpcoming).slice(0, 4);
+---
+
+<section class="section_events">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container-main is-relative w-container">
+      <div class="events-wrapper">
+        <div class="section-heading-block bottom-space-btwn">
+          <div class="section-heading-text-block events-heading-text-block">
+            <div layer-view-1="" class="section-subtitle-block text-size-xsmall text-weight-medium is-light">events</div>
+            <h2 section-title="" class="section-title-block is-full text-color-white">Upcoming <em>Events</em></h2>
+          </div>
+        </div>
+        <div data-delay="4000" data-animation="slide" class="events-slider-block w-slider" data-autoplay="false" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true">
+          <div layer-view-3="" class="events-slider-mask w-slider-mask">
+            {events.map((event) => (
+              <div class="events-slide-block w-slide">
+                <div class="cms-passthrough w-dyn-list">
+                  <div role="list" class="cms-passthrough w-dyn-items">
+                    <div role="listitem" class="cms-passthrough w-dyn-item">
+                      <div class="events-item-block">
+                        <div class="events-item-card-block">
+                          <div class="events-item-card-top-block">
+                            <div class="events-item-date">{formatDate(event.data.date)}</div>
+                            <div class="events-item-text-block">
+                              <div class="events-item-title">{event.data.title}</div>
+                              <p class="events-item-text">{event.data.shortDescription}</p>
+                            </div>
+                            <div class="events-item-place-block"><img src="/images/event-place-icon.svg" alt="events-item-place-icon" loading="lazy" class="events-item-place-icon" />
+                              <div class="events-item-place-text">{event.data.location}</div>
+                            </div>
+                          </div>
+                          <a data-wf--primary-button--variant="v2" href={eventUrl(event)} class="btn btn-sm btn-brand w-variant-b4c2f97c-03fe-7ee3-338d-4ba5a86df765">View Details</a>
+                        </div>
+                        <div class="events-item-image-block"><img src={event.data.thumbnailImage} alt={event.data.title} loading="lazy" class="events-item-image" /></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="events-slider-arrow-prev w-slider-arrow-left">
+            <div class="events-slider-arrow-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.5 12.002L19 12.002" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M10.9999 18.002C10.9999 18.002 5.00001 13.583 5 12.0019C4.99999 10.4208 11 6.00196 11 6.00196" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="events-slider-arrow-next w-slider-arrow-right">
+            <div class="events-slider-arrow-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.5 11.998L5 11.998" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M13.0001 5.998C13.0001 5.998 19 10.417 19 11.9981C19 13.5792 13 17.998 13 17.998" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="events-slider-nav w-slider-nav w-round w-num"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

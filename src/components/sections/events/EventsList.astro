@@ -1,0 +1,59 @@
+---
+import EventRow from '../../cards/EventRow.astro';
+import { getEvents, isUpcoming } from '../../../lib/content';
+
+const events = await getEvents();
+const tabs = [
+  { id: 'Tab 1', events },
+  { id: 'Tab 2', events: events.filter((event) => !isUpcoming(event)) },
+  { id: 'Tab 3', events: events.filter(isUpcoming) },
+];
+---
+
+<section class="section_events-list">
+  <div class="section-gap is-page-top">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="events-list-wrapper">
+        <div class="section-header-block is-split">
+          <div class="section-header-text-block">
+            <h1 hero-title="" class="section-header-title heading-style-1 text-color-heading">Events &amp; <em class="section-title-italic">Retreats</em></h1>
+            <p load-anim-2="" class="section-header-description">Beyond the weekly schedule — workshops to go deeper, retreats to slow down, and community evenings to connect.</p>
+          </div>
+        </div>
+        <div data-current="Tab 1" data-easing="ease" data-duration-in="300" data-duration-out="100" class="events-tab-block w-tabs">
+          <div class="events-tab-menu w-tab-menu">
+            <a data-w-tab="Tab 1" class="tab-link-block w-inline-block w-tab-link w--current">
+              <div>All Events</div>
+            </a>
+            <a data-w-tab="Tab 2" class="tab-link-block w-inline-block w-tab-link">
+              <div>Past events</div>
+            </a>
+            <a data-w-tab="Tab 3" class="tab-link-block w-inline-block w-tab-link">
+              <div>Upcoming events</div>
+            </a>
+          </div>
+          <div class="events-tab-content w-tab-content">
+            {tabs.map((tab, index) => (
+              <div data-w-tab={tab.id} class:list={['events-tab-pane', 'w-tab-pane', index === 0 && 'w--tab-active']}>
+                <div {...(index === 0 ? { 'load-anim-4': '' } : {})} class="w-dyn-list">
+                  <div role="list" class="events-list-block w-dyn-items">
+                    {tab.events.map((event) => (
+                      <div role="listitem" class="w-dyn-item">
+                        <EventRow event={event} />
+                      </div>
+                    ))}
+                  </div>
+                  {tab.events.length === 0 && (
+                    <div class="w-dyn-empty">
+                      <div>No items found.</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

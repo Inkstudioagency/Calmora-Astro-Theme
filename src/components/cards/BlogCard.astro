@@ -1,0 +1,27 @@
+---
+import { blogPostUrl, type BlogPostEntry } from '../../lib/content';
+import { formatDate } from '../../lib/utils';
+
+interface Props {
+  post: BlogPostEntry;
+  /** Extra class for the category tag (used by the tinted section variant). */
+  tagClass?: string | null;
+}
+
+const { post, tagClass } = Astro.props;
+const { title, category, thumbnailImage, publishedDate } = post.data;
+const href = blogPostUrl(post);
+---
+
+<article class="blog-item-card-block">
+  <a href={href} class="blog-item-image-block w-inline-block"><img src={thumbnailImage} alt={title} loading="lazy" class="blog-item-image" /></a>
+  <div class="blog-item-meta-block">
+    <div class:list={['blog-item-tag-block', tagClass]}>
+      <p class="blog-item-tag-label">{category}</p>
+    </div>
+    <p class="blog-item-date">{formatDate(publishedDate).toUpperCase()}</p>
+  </div>
+  <a href={href} class="blog-item-title-block w-inline-block">
+    <h3 class="blog-item-title">{title}</h3>
+  </a>
+</article>

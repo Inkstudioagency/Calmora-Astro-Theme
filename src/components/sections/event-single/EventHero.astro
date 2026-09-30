@@ -1,0 +1,49 @@
+---
+import type { EventEntry } from '../../../lib/content';
+import { formatDate, numbered } from '../../../lib/utils';
+
+interface Props {
+  entry: EventEntry;
+}
+
+const { data } = Astro.props.entry;
+const avatars = numbered(data, 'attendeeAvatar', 4);
+---
+
+<section class="section_event-hero is-cms"><img src={data.bannerImage} loading="lazy" alt="" class="event-hero-media" />
+  <div class="event-hero-overlay"></div>
+  <div class="w-layout-blockcontainer container-main is-stacked w-container">
+    <div class="event-hero-wrapper">
+      <div class="event-hero-title-block">
+        {data.heroTagline && <div hero-title="" class="event-hero-title heading-style-1 text-color-white">{data.heroTagline}</div>}
+        <h1 hero-title="" class="event-hero-title heading-style-1 text-color-white hero-title-italic">{data.title}</h1>
+      </div>
+      <div class="event-hero-booking-block">
+        <div load-anim-3="" class="booking-card-block">
+          <div class="card-title">Event Details</div>
+          <p class="prose-text">{data.shortDescription}</p>
+          <div class="booking-card-row"><img src="/images/hourglass.svg" loading="lazy" alt="booking-card-row-icon" class="booking-card-row-icon" />
+            <div class="booking-card-row-text">{data.duration}</div>
+          </div>
+          <div class="booking-card-row"><img src="/images/Calender-Icon.svg" loading="lazy" alt="booking-card-row-icon" class="booking-card-row-icon" />
+            <div class="booking-card-row-text">{formatDate(data.date)}</div>
+          </div>
+          <div class="booking-card-row"><img src="/images/event-place-icon.svg" loading="lazy" alt="booking-card-row-icon" class="booking-card-row-icon" />
+            <div class="booking-card-row-text">{data.location}</div>
+          </div>
+          <div class="booking-card-cta-block">
+            <a href="/contact" class="btn btn-sm btn-brand is-full w-inline-block">Book Event</a>
+          </div>
+          <div class="booking-card-attendees-block">
+            <div class="event-row-avatar-row">
+              {avatars.map((avatar, index) => (
+                <div class:list={['event-row-avatar-block', index === 0 && 'is-first']}><img src={avatar} loading="lazy" alt="event-row-avatar" class="event-row-avatar" /></div>
+              ))}
+            </div>
+            <p class="event-row-attendees-text">{data.attendeeCountLabel}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

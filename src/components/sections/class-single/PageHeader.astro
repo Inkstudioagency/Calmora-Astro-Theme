@@ -1,0 +1,46 @@
+---
+import type { ClassEntry } from '../../../lib/content';
+
+interface Props {
+  entry: ClassEntry;
+}
+
+const { title, titleLead, titleAccent, teacherName, teacherRole, teacherAvatar, primaryDay, primaryTime, heroImage } = Astro.props.entry.data;
+---
+
+<section class="section_page-header">
+  <div class="section-gap is-page-top">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="page-header-wrapper">
+        <div class="page-header-top-block">
+          <div class="page-header-title-block">
+            <h1 hero-title="" class="page-header-title page-header-title-lead">{titleLead || title}</h1>
+            {titleAccent && <div hero-title="" class="page-header-title page-header-title-accent-text">{titleAccent}</div>}
+          </div>
+          <div class="page-header-meta-block">
+            <div load-anim-2="" class="page-header-meta-item">
+              <div class="page-header-meta-label">Teacher</div>
+              <div class="page-header-meta-card is-tight">
+                <div class="page-header-meta-avatar-block"><img src={teacherAvatar} loading="lazy" alt={teacherName} class="page-header-meta-avatar" /></div>
+                <div class="page-header-meta-text-block">
+                  <div class="page-header-meta-title">{teacherName}</div>
+                  <div class="page-header-meta-text">{teacherRole}</div>
+                </div>
+              </div>
+            </div>
+            <div load-anim-3="" class="page-header-meta-item">
+              <div class="page-header-meta-label">Time table</div>
+              <div class="page-header-meta-card"><img src="/images/event-place-icon.svg" loading="lazy" alt="page-header-meta-icon" class="page-header-meta-icon" />
+                <div class="page-header-meta-text-block">
+                  <div class="page-header-meta-title">{primaryDay}</div>
+                  <div class="page-header-meta-text">{primaryTime}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div load-anim-4="" class="page-header-media-block"><img src={heroImage} loading="lazy" alt={title} class="page-header-media" /></div>
+      </div>
+    </div>
+  </div>
+</section>

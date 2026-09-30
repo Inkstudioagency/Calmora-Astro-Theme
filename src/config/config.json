@@ -1,0 +1,59 @@
+{
+  "site": {
+    "name": "Calmora",
+    "title": "Calmora - Wellness Website Astro Theme",
+    "description": "Calmora is a modern wellness Astro theme for yoga studios to showcase classes, trainers, events, pricing, and build a calming presence.",
+    "base_url": "https://calmora-astro-theme.vercel.app",
+    "lang": "en",
+    "og_image": "/images/og-image.webp",
+    "logo_light": "/images/Logo-Calmora.svg",
+    "logo_dark": "/images/Logo-Calmora-Primary.svg",
+    "logo_alt": "Calmora"
+  },
+  "fonts": {
+    "google": [
+      "Instrument Serif:400",
+      "Inter Tight:300,400,500,600,700,800,900"
+    ]
+  },
+  "footer": {
+    "logo_mark": "/images/footer-logo-mark.svg",
+    "logo_text": "Calmora",
+    "description": "Empowering passionate yogis and wellness enthusiasts to elevate their practice — through mindful guidance, clear intentions",
+    "newsletter_title": "Subscribe for helpful insight and resources",
+    "newsletter_placeholder": "Email your email address",
+    "newsletter_button": "Subscribe",
+    "newsletter_success": "Thanks — you're on the list.",
+    "newsletter_error": "Something went wrong. Please try again.",
+    "copyright": "© 2026 Calmora. All rights reserved."
+  },
+  "social": [
+    {
+      "name": "LinkedIn",
+      "url": "https://linkedin.com/",
+      "icon": "/images/footer-social-icon.svg",
+      "new_tab": true
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/",
+      "icon": "/images/footer-social-icon-1.svg",
+      "new_tab": false
+    },
+    {
+      "name": "X",
+      "url": "https://x.com/",
+      "icon": "/images/footer-social-icon-2.svg",
+      "new_tab": true
+    },
+    {
+      "name": "Facebook",
+      "url": "https://fb.com/",
+      "icon": "/images/footer-social-icon-3.svg",
+      "new_tab": true
+    }
+  ],
+  "webflow": {
+    "site_id": "6aae6fe397fb335d35a4b261"
+  }
+}

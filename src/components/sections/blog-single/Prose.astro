@@ -1,0 +1,110 @@
+---
+import config from '../../../config/config.json';
+import { blogPostUrl, type BlogPostEntry } from '../../../lib/content';
+import { numbered } from '../../../lib/utils';
+
+interface Props {
+  entry: BlogPostEntry;
+}
+
+const { entry } = Astro.props;
+const { data } = entry;
+const listItems = numbered(data, 'listItem', 7);
+
+const pageUrl = encodeURIComponent(new URL(blogPostUrl(entry), Astro.site ?? config.site.base_url).href);
+const share = {
+  facebook: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`,
+  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`,
+  instagram: data.shareInstagram || '#',
+};
+---
+
+<section class="section_prose">
+  <div class="section-gap bottom-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="prose-layout-block">
+        <div class="prose-meta-block">
+          <div layer-view-1="" class="prose-meta-row">
+            <div class="prose-meta-label">Category</div>
+            <div class="prose-meta-value">{data.category}</div>
+          </div>
+          <div layer-view-2="" class="prose-meta-row">
+            <div class="prose-meta-label">Read time</div>
+            <div class="prose-meta-value">{data.readTime}</div>
+          </div>
+          <div layer-view-3="" class="prose-meta-row">
+            <div class="prose-meta-label">Written by</div>
+            <div class="prose-meta-author-block">
+              <div class="prose-meta-avatar-block"><img src={data.authorAvatar} loading="lazy" alt={data.authorName} class="prose-meta-avatar" /></div>
+              <div class="prose-meta-name">{data.authorName}</div>
+            </div>
+          </div>
+          <div layer-view-4="" class="prose-meta-row">
+            <div class="prose-meta-label">Share</div>
+            <div class="prose-meta-share-block">
+              <a href={share.facebook} target="_blank" rel="noopener" aria-label="Share on Facebook" class="prose-meta-share-link w-inline-block">
+                <div class="prose-meta-share-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                    <path d="M16.9265 8.02637H13.9816C12.9378 8.02637 12.0894 8.86847 12.0817 9.91229L11.9964 21.4268M10.082 14.0017H14.8847" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </a>
+              <a href={share.linkedin} target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="prose-meta-share-link w-inline-block">
+                <div class="prose-meta-share-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 10V17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M11 13V17M11 13C11 11.3431 12.3431 10 14 10C15.6569 10 17 11.3431 17 13V17M11 13V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M7.125 6.75H7M7.25 6.75C7.25 6.88807 7.13807 7 7 7C6.86193 7 6.75 6.88807 6.75 6.75C6.75 6.61193 6.86193 6.5 7 6.5C7.13807 6.5 7.25 6.61193 7.25 6.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M3 12C3 7.75736 3 5.63604 4.31802 4.31802C5.63604 3 7.75736 3 12 3C16.2426 3 18.364 3 19.682 4.31802C21 5.63604 21 7.75736 21 12C21 16.2426 21 18.364 19.682 19.682C18.364 21 16.2426 21 12 21C7.75736 21 5.63604 21 4.31802 19.682C3 18.364 3 16.2426 3 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </a>
+              <a href={share.instagram} target="_blank" rel="noopener" aria-label="Instagram" class="prose-meta-share-link w-inline-block">
+                <div class="prose-meta-share-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12C3 7.75736 3 5.63604 4.31802 4.31802C5.63604 3 7.75736 3 12 3C16.2426 3 18.364 3 19.682 4.31802C21 5.63604 21 7.75736 21 12C21 16.2426 21 18.364 19.682 19.682C18.364 21 16.2426 21 12 21C7.75736 21 5.63604 21 4.31802 19.682C3 18.364 3 16.2426 3 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M17.375 6.75024H17.25M17.5 6.75024C17.5 6.88832 17.388 7.00024 17.25 7.00024C17.1119 7.00024 17 6.88832 17 6.75024C17 6.61217 17.1119 6.50024 17.25 6.50024C17.388 6.50024 17.5 6.61217 17.5 6.75024Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="prose-body-block">
+          <div class="prose-wrapper is-medium">
+            <div layer-view-2="" class="prose-block">
+              <h2 section-title="" class="prose-title">{data.introTitle}</h2>
+              <p class="prose-text">{data.introText}</p>
+            </div>
+            <div layer-view-2="" class="prose-block">
+              <h2 class="prose-title">{data.listTitle}</h2>
+              <p class="prose-text">{data.listIntro}</p>
+              <ul role="list" class="prose-list">
+                {listItems.map((item) => <li class="prose-list-item">{item}</li>)}
+              </ul>
+              <p class="prose-text">{data.listClose}</p>
+            </div>
+            <div layer-view-2="" class="prose-figure-block is-tall"><img src={data.bodyFigure} loading="lazy" alt="" class="prose-figure" /></div>
+            <div layer-view-2="" class="prose-block">
+              <h2 class="prose-title">{data.sectionTwoTitle}</h2>
+              <p class="prose-text">{data.sectionTwoText}</p>
+            </div>
+            <div layer-view-2="" class="prose-quote-block is-filled">
+              <div class="prose-quote-block is-inverse">
+                <p class="prose-quote-text is-inverse">{data.pullQuote}</p>
+              </div>
+            </div>
+            <div layer-view-2="" class="prose-block">
+              <h2 class="prose-title">{data.sectionThreeTitle}</h2>
+              <p class="prose-text">{data.sectionThreeText}</p>
+            </div>
+            <div layer-view-2="" class="prose-block">
+              <h2 class="prose-title">{data.closingTitle}</h2>
+              <p class="prose-text">{data.closingText}</p>
+              <p class="prose-text">{data.closingTextTwo}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+---
+import { eventUrl, type EventEntry } from '../../lib/content';
+import { formatDate, numbered } from '../../lib/utils';
+
+interface Props {
+  event: EventEntry;
+  /** Heading level for the event name. */
+  heading?: 'h2' | 'h3';
+  /** Tinted card, used when the section background is white. */
+  tinted?: boolean;
+  /** Scroll-reveal attribute to put on the row, e.g. `layer-view-2`. */
+  reveal?: string;
+  /** Class of the title link; the event page uses `event-title-block`. */
+  titleLinkClass?: string;
+}
+
+const { event, heading: Heading = 'h2', tinted = false, reveal, titleLinkClass = "event-hero-title-block" } = Astro.props;
+const { title, date, shortDescription, location, thumbnailImage, attendeeOverflow, attendeeCountLabel } = event.data;
+const avatars = numbered(event.data, 'attendeeAvatar', 4);
+const href = eventUrl(event);
+const revealAttr = reveal ? { [reveal]: '' } : {};
+---
+
+<div {...revealAttr} class="event-row-block">
+  <a href={href} class="event-row-image-block w-inline-block"><img src={thumbnailImage} loading="lazy" alt={title} class="event-row-image" /></a>
+  <div class:list={['event-row-card', tinted && 'bg-color']}>
+    <div class="event-row-main">
+      <div class="event-row-badge">{formatDate(date)}</div>
+      <div class="event-row-text-block">
+        <a href={href} class:list={[titleLinkClass, "w-inline-block"]}>
+          <Heading class="card-title is-large">{title}</Heading>
+        </a>
+        <p class="event-row-text">{shortDescription}</p>
+      </div>
+      <div class="event-row-place-block"><img src="/images/event-place-icon.svg" loading="lazy" alt="event-row-place-icon" class="event-row-place-icon" />
+        <div class="event-row-place">{location}</div>
+      </div>
+    </div>
+    <div class="event-row-aside">
+      <div class="event-row-attendees-block">
+        <div class="event-row-avatar-row">
+          {avatars.map((avatar, index) => (
+            <div class:list={['event-row-avatar-block', index === 0 && 'is-first']}><img src={avatar} loading="lazy" alt="" class="event-row-avatar" /></div>
+          ))}
+          {attendeeOverflow && <div class="event-row-avatar-more">{attendeeOverflow}</div>}
+        </div>
+        <p class="event-row-attendees-text">{attendeeCountLabel}</p>
+      </div>
+      <a data-wf--primary-button--variant="v1" href={href} class="btn btn-sm btn-brand">View details</a>
+    </div>
+  </div>
+</div>

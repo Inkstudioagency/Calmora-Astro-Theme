@@ -1,0 +1,76 @@
+---
+import LinkButton from '../../LinkButton.astro';
+import { getFeaturedClasses, classUrl } from '../../../lib/content';
+
+const classes = await getFeaturedClasses(4);
+---
+
+<section class="section_classes">
+  <div class="section-gap is-page-top">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="classes-wrapper">
+        <div class="section-header-block is-pricing">
+          <h1 hero-title="" class="section-header-title heading-style-1 text-color-heading">Our Best Yoga And <em class="section-title-italic">Wellness</em><img src="/images/about-icon-lead.svg" alt="About Icon" load-anim-1="" class="section-title-mark"><em class="section-title-italic">Classes</em></h1>
+          <p load-anim-2="" class="section-header-description">Our classes are not about perfect poses. They are about presence, breath, and building a practice that meets you exactly where you are.</p>
+        </div>
+        <div class="classes-content-block">
+          <div data-delay="0" data-animation="slide" class="section-slider-block w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="1" data-nav-spacing="3" data-duration="500" data-infinite="true">
+            <div load-anim-3="" class="section-slider-mask w-slider-mask">
+              {classes.map((entry, index) => {
+                // The first slide carries the page's only h2; the rest are h3, as in the design.
+                const Heading = index === 0 ? 'h2' : 'h3';
+                const href = classUrl(entry);
+                return (
+                  <div class="classes-slide-block w-slide">
+                    <div class="cms-passthrough w-dyn-list">
+                      <div role="list" class="cms-passthrough w-dyn-items">
+                        <div role="listitem" class="cms-passthrough w-dyn-item">
+                          <div class="class-feature-card-block">
+                            <a href={href} class="class-feature-image-block w-inline-block"><img src={entry.data.heroImage || entry.data.cardImage} alt={entry.data.title} loading="lazy" class="class-card-image" /></a>
+                            <div class="class-feature-text-block">
+                              <div class="class-card-block">
+                                <div class="class-card-meta-block">
+                                  <div class="class-card-tag is-tinted"><img src="/images/benefit-icon.svg" alt="About Icon" loading="lazy" class="class-card-tag-icon" />
+                                    <div>{entry.data.metaLabel}</div>
+                                  </div>
+                                  <div class="class-card-author is-tinted">
+                                    <div class="class-card-avatar-block"><img src={entry.data.teacherAvatar} alt={entry.data.teacherName} loading="lazy" class="class-card-avatar" /></div>
+                                    <div>{entry.data.teacherName}</div>
+                                  </div>
+                                </div>
+                                <div class="class-card-text-block">
+                                  <a href={href} class="classes-title-block w-inline-block">
+                                    <Heading class="class-card-title">{entry.data.title}</Heading>
+                                  </a>
+                                  <p class="class-card-text">{entry.data.shortDescription}</p>
+                                </div>
+                                <LinkButton href={href} label="View Class" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div class="section-slider-arrow-prev w-slider-arrow-left">
+              <div class="section-slider-arrow-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.0078 4.68652C12.0934 4.68658 12.1668 4.71285 12.249 4.79492C12.3313 4.88086 12.3574 4.95797 12.3574 5.04395C12.3573 5.13078 12.3308 5.20478 12.249 5.28711L5.8877 11.6484H19.2979C19.4194 11.6485 19.4945 11.6838 19.5586 11.7471C19.6207 11.8084 19.6553 11.8801 19.6553 12C19.6553 12.1199 19.6207 12.1916 19.5586 12.2529C19.4945 12.3162 19.4194 12.3515 19.2979 12.3516H5.8877L12.2432 18.707V18.7061C12.3254 18.7885 12.3537 18.8653 12.3545 18.957V18.958C12.355 19.0245 12.3404 19.0829 12.2988 19.1426L12.2471 19.2041C12.1671 19.2851 12.0939 19.3113 12.0049 19.3105C11.9104 19.3096 11.8321 19.2796 11.749 19.1973L4.80078 12.249C4.74762 12.1949 4.72192 12.1527 4.70996 12.124V12.123C4.69485 12.0867 4.68652 12.0466 4.68652 11.999C4.68655 11.9514 4.69516 11.9123 4.70996 11.877V11.876C4.72183 11.8475 4.74729 11.8051 4.80078 11.751L11.751 4.80078C11.8414 4.71356 11.9211 4.68652 12.0078 4.68652Z" fill="white" stroke="white"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="section-slider-arrow-next w-slider-arrow-right">
+              <div class="section-slider-arrow-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.9951 4.68945C12.0661 4.69012 12.1279 4.70677 12.1895 4.75L12.251 4.80273L19.1992 11.751C19.2524 11.8051 19.2781 11.8473 19.29 11.876V11.877C19.3052 11.9133 19.3135 11.9534 19.3135 12.001C19.3134 12.0486 19.3048 12.0877 19.29 12.123V12.124C19.2782 12.1525 19.2527 12.1948 19.1992 12.249L12.2451 19.1973C12.1538 19.2875 12.0752 19.3135 11.9922 19.3135C11.9115 19.3134 11.8393 19.2889 11.7559 19.2031L11.751 19.1982L11.6992 19.1377C11.6571 19.0781 11.6426 19.02 11.6426 18.9551C11.6426 18.8904 11.6573 18.8328 11.6992 18.7734L11.751 18.7129L18.1123 12.3516H4.70215C4.58005 12.3515 4.50781 12.3164 4.44727 12.2559H4.44629C4.38542 12.195 4.35059 12.122 4.35059 12C4.35059 11.878 4.38542 11.805 4.44629 11.7441H4.44727C4.50782 11.6836 4.58005 11.6485 4.70215 11.6484H18.1123L11.7568 5.29297C11.6955 5.23162 11.6637 5.17322 11.6514 5.1084L11.6455 5.04102C11.6446 4.95107 11.6708 4.87748 11.751 4.79688L11.752 4.7959C11.8321 4.71531 11.9055 4.68868 11.9951 4.68945Z" fill="white" stroke="white"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="section-slider-nav w-slider-nav w-slider-nav-invert w-round"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

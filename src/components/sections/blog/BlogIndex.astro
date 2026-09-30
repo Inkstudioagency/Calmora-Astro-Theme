@@ -1,0 +1,70 @@
+---
+import LinkButton from '../../LinkButton.astro';
+import { getBlogPosts, blogPostUrl } from '../../../lib/content';
+
+const posts = await getBlogPosts();
+const featured = posts.filter((post) => post.data.featured).slice(0, 2);
+const latest = posts.filter((post) => !featured.includes(post));
+---
+
+<section class="section_blog-index">
+  <div class="section-gap is-page-top">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="blog-index-wrapper">
+        <div class="blog-feature-block">
+          <div class="section-header-block is-split">
+            <div class="section-header-text-block blog">
+              <h1 hero-title="" class="section-header-title heading-style-1 text-color-heading">Learn From <em class="hero-title-italic">Our Blogs</em></h1>
+            </div>
+            <p load-anim-2="" class="section-header-description max-width-22">Our classes are not about perfect poses. They are about presence, breath, and building a practice that meets you exactly where you are.</p>
+          </div>
+          <div class="w-dyn-list">
+            <div role="list" class="class-list-block is-two-up is-ruled-grid w-dyn-items">
+              {featured.map((post) => (
+                <div role="listitem" class="w-dyn-item">
+                  <div load-anim-3="" class="class-item-card-block is-ruled is-feature">
+                    <div class="class-card-block">
+                      <a href={blogPostUrl(post)} class="class-card-image-block is-wide w-inline-block"><img src={post.data.bannerImage || post.data.thumbnailImage} alt={post.data.title} loading="lazy" class="class-card-image" /></a>
+                      <div class="class-card-text-block">
+                        <a href={blogPostUrl(post)} class="blog-title-link-block w-inline-block">
+                          <h2 class="card-title is-large">{post.data.title}</h2>
+                        </a>
+                        <p class="class-card-text">{post.data.excerpt}</p>
+                      </div>
+                      <LinkButton href={blogPostUrl(post)} label="Read Article" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div class="blog-latest-block">
+          <div class="section-header-block">
+            <h2 section-title="" class="section-header-title heading-style-2 text-color-heading">Latest Blogs</h2>
+          </div>
+          <div class="w-dyn-list">
+            <div role="list" class="class-list-block is-ruled-grid w-dyn-items">
+              {latest.map((post) => (
+                <div role="listitem" class="w-dyn-item">
+                  <div class="class-item-card-block is-ruled">
+                    <div class="class-card-block" layer-view-2="">
+                      <a href={blogPostUrl(post)} class="class-card-image-block w-inline-block"><img src={post.data.thumbnailImage} alt={post.data.title} loading="lazy" class="class-card-image" /></a>
+                      <div class="class-card-text-block">
+                        <a href={blogPostUrl(post)} class="blog-title-link-block w-inline-block">
+                          <h3 class="card-title">{post.data.title}</h3>
+                        </a>
+                        <p class="class-card-text">{post.data.excerpt}</p>
+                      </div>
+                      <LinkButton href={blogPostUrl(post)} label="Read Article" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

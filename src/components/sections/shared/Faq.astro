@@ -1,0 +1,98 @@
+---
+interface Props {
+  /** Tinted by default; use `bg-white` on a white section. */
+  variant?: 'bg-color' | 'bg-white';
+}
+
+const { variant = 'bg-color' } = Astro.props;
+// Webflow component-variant id for the white version.
+const v = variant === 'bg-white' ? '202296e6-cbde-b069-3a86-af411d66841e' : null;
+---
+
+<section data-wf--section-faq--variant={variant} data-wf-component-id="0b75547a-53d3-c100-5057-8ae8e13e7065" data-wf-variant-state={v ?? 'base'} class:list={['section_faq', v && `w-variant-${v}`]}>
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container-main container-row w-container">
+      <div class="faq-wrapper">
+        <div class="faq-info-block">
+          <div class="faq-info-content-block">
+            <div class="section-heading-block faq-heading-block">
+              <div class="section-heading-text-block faq-heading-text-block">
+                <p layer-view-1="" class="section-subtitle-block text-size-xsmall text-color-brand text-weight-medium">FAQ</p>
+                <h2 section-title="" class="section-title-block faq-title-block">Frequently Asked <br data-wf-component-id="0b75547a-53d3-c100-5057-8ae8e13e7065" data-wf-variant-state="base"><em>Questions</em></h2>
+              </div>
+            </div>
+            <div layer-view-3="" class="faq-card-block">
+              <div class="faq-card-inner-block">
+                <div class="faq-promo-block">
+                  <div class="faq-promo-bg-block"></div>
+                  <div class="faq-indicator-block"><img src="/images/faq-indicator.webp" alt="Woman with long red hair meditating cross-legged in a calm indoor space" loading="lazy" class="faq-indicator"></div>
+                  <div class="faq-promo-text-block">
+                    <p class="faq-promo-title">Still have a question?</p>
+                    <p class="faq-promo-text">Send us a message and we&#x27;ll come back to you within one business day.</p>
+                  </div>
+                </div>
+                <a data-wf--primary-button--variant="v2" href="#" class="btn btn-sm btn-brand w-variant-b4c2f97c-03fe-7ee3-338d-4ba5a86df765">Get In Touch</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="faq-content-block">
+          <div layer-view-1="" class:list={['faq-item-block', v && `w-variant-${v}`]}>
+            <div class="faq-item-question-block">
+              <p class="faq-item-question">Do I need experience to start?</p>
+              <div><img src="/images/faq-icon.svg" alt="" class="faq-item-icon"></div>
+            </div>
+            <div class="faq-item-ans-block">
+              <p class="text-size-regular top-space">No. Every class is taught with options rather than expectations, and our Fundamentals and Gentle sessions assume no prior practice at all. Tell your teacher it&#x27;s your first time and they will look after you.</p>
+            </div>
+          </div>
+          <div layer-view-2="" class:list={['faq-item-block', v && `w-variant-${v}`]}>
+            <div class="faq-item-question-block">
+              <p class="faq-item-question">What should I bring to my first class?</p>
+              <div><img src="/images/faq-icon.svg" alt="" class="faq-item-icon"></div>
+            </div>
+            <div class="faq-item-ans-block">
+              <p class="text-size-regular top-space">Comfortable clothes and a water bottle. Mats, blocks, straps and bolsters are all provided, and there are showers and lockers in the changing rooms.</p>
+            </div>
+          </div>
+          <div layer-view-3="" class:list={['faq-item-block', v && `w-variant-${v}`]}>
+            <div class="faq-item-question-block">
+              <p class="faq-item-question">Can I come without a membership?</p>
+              <div><img src="/images/faq-icon.svg" alt="" class="faq-item-icon"></div>
+            </div>
+            <div class="faq-item-ans-block">
+              <p class="text-size-regular top-space">Yes. Drop-in classes and pay-as-you-go class packs sit alongside our memberships, so you can practise as often or as rarely as suits you.</p>
+            </div>
+          </div>
+          <div layer-view-3="" class:list={['faq-item-block', v && `w-variant-${v}`]}>
+            <div class="faq-item-question-block">
+              <p class="faq-item-question">How early should I arrive?</p>
+              <div><img src="/images/faq-icon.svg" alt="" class="faq-item-icon"></div>
+            </div>
+            <div class="faq-item-ans-block">
+              <p class="text-size-regular top-space">Fifteen minutes before your first class, and around five for every class after that. It gives you time to check in, settle and set up your mat without rushing.</p>
+            </div>
+          </div>
+          <div layer-view-3="" class:list={['faq-item-block', v && `w-variant-${v}`]}>
+            <div class="faq-item-question-block">
+              <p class="faq-item-question">Can I pause or cancel my membership?</p>
+              <div><img src="/images/faq-icon.svg" alt="" class="faq-item-icon"></div>
+            </div>
+            <div class="faq-item-ans-block">
+              <p class="text-size-regular top-space">Pause or cancel anytime with 30 days notice. There are no joining fees and no lock-in contracts, and any unused class credits stay on your account.</p>
+            </div>
+          </div>
+          <div layer-view-3="" class:list={['faq-item-block', v && `w-variant-${v}`]}>
+            <div class="faq-item-question-block">
+              <p class="faq-item-question">Do you teach pregnant or injured students?</p>
+              <div><img src="/images/faq-icon.svg" alt="" class="faq-item-icon"></div>
+            </div>
+            <div class="faq-item-ans-block">
+              <p class="text-size-regular top-space">We do. Several of our teachers are qualified in pre and postnatal practice and in therapeutic yoga. Let us know before class so your teacher can adapt the session for you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

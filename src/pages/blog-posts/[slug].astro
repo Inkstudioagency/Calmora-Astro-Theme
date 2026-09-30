@@ -1,0 +1,32 @@
+---
+import config from '../../config/config.json';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/sections/blog-single/PageHeader.astro';
+import Prose from '../../components/sections/blog-single/Prose.astro';
+import BlogSlider from '../../components/sections/shared/BlogSlider.astro';
+import Faq from '../../components/sections/shared/Faq.astro';
+import { getBlogPosts, type BlogPostEntry } from '../../lib/content';
+
+export async function getStaticPaths() {
+  return (await getBlogPosts()).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+interface Props {
+  entry: BlogPostEntry;
+}
+
+const { entry } = Astro.props;
+---
+
+<BaseLayout
+  title={`${entry.data.title} | ${config.site.title}`}
+  description={entry.data.seoDescription || entry.data.excerpt}
+  image={entry.data.bannerImage || undefined}
+  pageId="6aae6fe397fb335d35a4b243"
+  navVariant="light"
+>
+  <PageHeader entry={entry} />
+  <Prose entry={entry} />
+  <BlogSlider title="Related Blog & News" subtitle={null} exclude={entry.id} />
+  <Faq />
+</BaseLayout>

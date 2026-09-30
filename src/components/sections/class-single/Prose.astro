@@ -1,0 +1,80 @@
+---
+import type { ClassEntry } from '../../../lib/content';
+import { numbered } from '../../../lib/utils';
+
+interface Props {
+  entry: ClassEntry;
+}
+
+const { data } = Astro.props.entry;
+const advantages = numbered(data, 'advantage', 3);
+const featureIcons = ['/images/benefit-icon.svg', '/images/benefit-icon-1.svg', '/images/icon-item-icon.svg'];
+const features = [
+  { title: data.feature1Title, text: data.feature1Text },
+  { title: data.feature2Title, text: data.feature2Text },
+  { title: data.feature3Title, text: data.feature3Text },
+].filter((feature) => feature.title || feature.text);
+---
+
+<section class="section_prose">
+  <div class="section-gap bottom-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="prose-wrapper">
+        <div layer-view-1="" class="prose-block">
+          <h2 class="prose-lead-title">{data.leadTitle}</h2>
+          <p class="prose-text">{data.leadText}</p>
+        </div>
+        <div layer-view-1="" class="prose-block">
+          <h3 class="prose-title">{data.advantagesTitle}</h3>
+          <ul role="list" class="prose-list">
+            {advantages.map((advantage) => <li class="prose-list-item">{advantage}</li>)}
+          </ul>
+        </div>
+        <div layer-view-1="" class="prose-figure-wrapper">
+          <div class="prose-figure-block"><img src={data.bodyFigure} alt="" loading="lazy" class="prose-figure" /></div>
+        </div>
+        <div layer-view-1="" class="prose-block">
+          <h3 class="prose-title">{data.readyTitle}</h3>
+          <p class="prose-text">{data.readyText}</p>
+        </div>
+        <div layer-view-1="" class="prose-block">
+          <h3 class="prose-title">{data.whyTitle}</h3>
+          <p class="prose-text">{data.whyText}</p>
+        </div>
+        <div layer-view-1="" class="prose-block">
+          <h3 class="prose-title">{data.featuresTitle}</h3>
+          <div class="prose-feature-list-block">
+            {features.map((feature, index) => (
+              <div class="prose-feature-card-block">
+                <div class="prose-feature-card-inner-block"><img src={featureIcons[index]} alt="prose-feature-icon" loading="lazy" class="prose-feature-icon" />
+                  <div class="prose-feature-text-block">
+                    <div class="card-title is-small hover-none">{feature.title}</div>
+                    <p class="prose-text">{feature.text}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div layer-view-1="" class="prose-block">
+          <h3 class="prose-title">{data.practicesTitle}</h3>
+          <p class="prose-text">{data.practicesText}</p>
+        </div>
+        <div class="prose-block">
+          <h3 class="prose-title">{data.testimonialTitle}</h3>
+          <div class="prose-testimonial-block">
+            <div layer-view-1="" class="prose-testimonial-media-block"><img src={data.testimonialImage} alt="" loading="lazy" class="prose-testimonial-media" />
+              <a aria-label="Play client testimonial video" href={data.testimonialVideo || '#'} class="prose-testimonial-play-link w-inline-block"><img src="/images/testimonial-play-icon.svg" alt="Play testimonial video" loading="lazy" class="prose-testimonial-play-icon" /></a>
+            </div>
+            <div layer-view-2="" class="prose-testimonial-card-block">
+              <div class="prose-testimonial-head-block">
+                <div class="prose-testimonial-name">{data.testimonialName}</div><img src="/images/testimonial-rating.svg" alt="prose-testimonial-rating" loading="lazy" class="prose-testimonial-rating" />
+              </div>
+              <p class="prose-text">{data.testimonialQuote}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
