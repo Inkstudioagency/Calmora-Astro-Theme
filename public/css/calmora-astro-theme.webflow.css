@@ -8241,6 +8241,7 @@ img {
   }
 
   .hero-title.heading-style-1.text-color-white {
+    width: var(--_sizes---sizes--size-full);
     max-width: none;
   }
 
