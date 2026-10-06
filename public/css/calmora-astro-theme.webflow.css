@@ -6878,6 +6878,10 @@ img {
     margin-top: var(--_sizes---sizes--size-zero);
   }
 
+  .hero-title.heading-style-1.text-color-white {
+    width: var(--_sizes---sizes--size-full);
+  }
+
   .nav-menu {
     width: var(--_sizes---sizes--size-full);
     margin-bottom: var(--_sizes---spacers--spacer-sm);
@@ -8241,7 +8245,6 @@ img {
   }
 
   .hero-title.heading-style-1.text-color-white {
-    width: var(--_sizes---sizes--size-full);
     max-width: none;
   }
 
