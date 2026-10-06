@@ -8241,7 +8241,11 @@ img {
   }
 
   .hero-title.heading-style-1.text-color-white {
-    max-width: 15rem;
+    max-width: none;
+  }
+
+  .hero-text-block {
+    padding-bottom: 3rem;
   }
 
   .nav-menu {
